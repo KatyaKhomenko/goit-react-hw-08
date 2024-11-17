@@ -1,0 +1,17 @@
+.logoutWrapper {
+  display: flex;
+  column-gap: 20px;
+  align-items: center;
+}
+.greet {
+  width: 100%;
+}
+.logoutBtn {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+.name {
+  font-weight: 600;
+}

@@ -1,0 +1,16 @@
+.mainNav {
+  display: flex;
+  column-gap: 20px;
+}
+.link {
+  color: #000;
+  text-decoration: none;
+}
+.active {
+  text-decoration: underline;
+  font-weight: 600;
+}
+.link:hover {
+  text-decoration: underline;
+  font-weight: 600;
+}

@@ -1,0 +1,60 @@
+.modalEditor {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 500px;
+  min-width: 320px;
+  margin-bottom: 20px;
+  border: 1px solid #000;
+  padding: 15px;
+  border-radius: 5px;
+  background-color: aliceblue;
+  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+}
+.inputName {
+  margin-top: 20px;
+}
+.field {
+  padding: 5px;
+  color: #2a2a2e;
+  font-weight: 400;
+  border: 1px solid #2a2a2e3c;
+  border-radius: 5px;
+}
+.field:focus {
+  outline: none;
+  border: 2px solid #2a2a2e;
+}
+.btnClose {
+  position: absolute;
+  top: 10px;
+  right: 5px;
+  background-color: transparent;
+  border: none;
+}
+.btnClose {
+  cursor: pointer;
+}
+.btn {
+  display: flex;
+  margin: 20px auto 0;
+  width: fit-content;
+  padding: 8px 15px;
+  border-radius: 10px;
+  color: #c0bfbf;
+  outline: none;
+  font-weight: 600;
+  background-color: #2a2a2e;
+  box-shadow: rgba(211, 199, 199, 0.35) 0px -50px 36px -28px inset;
+}
+.btn:hover {
+  cursor: pointer;
+  background-color: #19191c;
+  color: #f2eded;
+}

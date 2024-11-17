@@ -1,0 +1,37 @@
+.modalDelete {
+  border-radius: 8px;
+  border: 1px solid #4d4a4a7a;
+  max-width: 400px;
+  min-width: 320px;
+  width: 100%;
+  padding: 35px;
+  top: 50%;
+  transform: translateY(-50%);
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
+    rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
+    rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+.btn {
+  margin-top: 10px;
+  height: 40px;
+  width: 45px;
+  border: none;
+  background-color: transparent;
+}
+.btn:hover {
+  margin-top: 10px;
+  height: 40px;
+  width: 45px;
+  font-weight: 600;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  border-radius: 50% 50% 30% 30%;
+  box-shadow: rgba(0, 0, 0, 0.55) 0px -10px 36px -30px inset;
+}

@@ -1,0 +1,50 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  max-width: 300px;
+  padding: 12px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  box-shadow: rgba(50, 50, 93, 0.25) 1px 0px 15px -1px inset,
+    rgba(0, 0, 0, 0.3) 0px 22px 24px -20px inset;
+}
+.contactInfo {
+  margin-right: 10px;
+}
+.wrapperInfo {
+  display: flex;
+  align-items: center;
+}
+.nameInfo,
+.phoneInfo {
+  padding-left: 5px;
+  width: 170px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.btn {
+  display: flex;
+  width: 35px;
+  height: 35px;
+  padding: 0;
+  border: none;
+  color: #787676;
+  outline: none;
+  background-color: transparent;
+  align-items: center;
+  justify-content: center;
+}
+.btn:hover {
+  color: #19191c;
+  cursor: pointer;
+  border-radius: 50%;
+  /* border-bottom: 1px solid #000000; */
+  box-shadow: rgba(0, 0, 0, 0.17) 0px -4px 1px 2px inset,
+    rgba(0, 0, 0, 0.15) 0px 25px 17px -18px inset,
+    rgba(0, 0, 0, 0.1) 0px -29px 21px -20px inset,
+    rgba(0, 0, 0, 0.06) 0px 3px 10px, rgba(0, 0, 0, 0.09) 0px 3px 0px,
+    rgba(0, 0, 0, 0.09) 0px 3px 7px, rgba(0, 0, 0, 0.09) 0px 4px 18px,
+    rgba(0, 0, 0, 0.09) 0px 6px 17px;
+}

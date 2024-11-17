@@ -1,0 +1,16 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.field {
+  width: 300px;
+  padding: 5px;
+  color: #2a2a2e;
+  font-weight: 400;
+  border: 1px solid #2a2a2eaa;
+  border-radius: 5px;
+}
+.field:focus {
+  outline: none;
+  border: 2px solid #2a2a2e;
+}
