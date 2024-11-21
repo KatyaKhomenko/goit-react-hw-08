@@ -1,12 +1,13 @@
-import React from 'react';
-import AppBar from '../AppBar/AppBar';
-import Header from '../Header/Header';
+import { Toaster } from "react-hot-toast";
+import AppBar from "../AppBar/AppBar";
+import css from "./Layout.module.css";
 
-export const Layout = ({ children }) => {
+export default function Layout({ children }) {
   return (
-    <>
+    <div className={css.container}>
       <AppBar />
-      <main>{children}</main>
-    </>
+      {children}
+      <Toaster position="top-right" reverseOrder={false} />
+    </div>
   );
-};
+}

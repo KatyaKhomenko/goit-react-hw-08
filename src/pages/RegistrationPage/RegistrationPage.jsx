@@ -1,14 +1,11 @@
-import css from './RegistrationPage.module.css';
-import React from 'react';
-import RegistrationForm from '../../components/RegistrationForm/RegistrationForm';
+import PageTitle from "../../components/PageTitle/PageTitle";
+import RegistrationForm from "../../components/RegistrationForm/RegistrationForm";
 
-const RegistrationPage = () => {
+export default function RegisterPage() {
   return (
-    <dialog open className={css.modal}>
-      <h2>Sign up</h2>
+    <div>
+      <PageTitle>Register your account</PageTitle>
       <RegistrationForm />
-    </dialog>
+    </div>
   );
-};
-
-export default RegistrationPage;
+}

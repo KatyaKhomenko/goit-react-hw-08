@@ -1,80 +1,56 @@
 
-import css from './LoginForm.module.css';
-import React from 'react';
-import * as Yup from 'yup';
-import { useId } from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { useDispatch } from 'react-redux';
-import { login } from '../../redux/auth/operations';
+import { Formik, Form, Field } from "formik";
+import { useDispatch, useSelector } from "react-redux";
+import { logIn } from "../../redux/auth/operations";
+import { selectIsLoading } from "../../redux/auth/selectors";
+import * as Yup from "yup";
 
-const LoginForm = () => {
-  const emailFieldId = useId();
-  const passwordFieldId = useId();
+import css from "./LoginForm.module.css";
+
+const initialValues = {
+  email: "",
+  password: "",
+};
+
+const LoginFormSchema = Yup.object().shape({
+  email: Yup.string()
+    .min(7, "Too Short!")
+    .max(50, "Too Long!")
+    .required("Required"),
+  password: Yup.string()
+    .min(7, "Too Short!")
+    .max(50, "Too Long!")
+    .required("Required"),
+});
+
+export default function LoginForm() {
   const dispatch = useDispatch();
+  const isLoading = useSelector(selectIsLoading);
 
   const handleSubmit = (values, actions) => {
-    console.log(values);
-    dispatch(login(values));
+    dispatch(logIn(values));
     actions.resetForm();
   };
 
-  //State of initialValues
-  const contactValue = {
-    email: '',
-    password: '',
-  };
-
-  //Validation config
-  const FeedbackSchema = Yup.object().shape({
-    email: Yup.string().email('Invalid email format').required('Required'),
-    password: Yup.string()
-      .min(4, 'Too Short!')
-      .max(50, 'Too Long!')
-      .required('Required'),
-  });
-
   return (
     <Formik
-      initialValues={contactValue}
-      validationSchema={FeedbackSchema}
+      initialValues={initialValues}
       onSubmit={handleSubmit}
+      validationSchema={LoginFormSchema}
     >
-      <Form className={css.form}>
-        <label className={css.inputName} htmlFor={emailFieldId}>
+      <Form className={css.form} autoComplete="off">
+        <label className={css.label}>
           Email
+          <Field type="email" name="email" />
         </label>
-        <Field
-          className={css.field}
-          type="text"
-          name="email"
-          id={emailFieldId}
-        />
-        <ErrorMessage
-          name="email"
-          component="div"
-          style={{ color: 'red', fontSize: '12px' }}
-        />
-
-        <label className={css.inputName} htmlFor={passwordFieldId}>
+        <label className={css.label}>
           Password
+          <Field type="password" name="password" />
         </label>
-        <Field
-          className={css.field}
-          type="text"
-          name="password"
-          id={passwordFieldId}
-        />
-        <ErrorMessage
-          name="password"
-          component="div"
-          style={{ color: 'red', fontSize: '12px' }}
-        />
-        <button className={css.btn} type="submit">
-          Sign in
+        <button type="submit" disabled={isLoading}>
+          Log In
         </button>
       </Form>
     </Formik>
   );
-};
-
-export default LoginForm;
+}

@@ -1,16 +1,11 @@
-.mainNav {
-  display: flex;
-  column-gap: 20px;
-}
 .link {
-  color: #000;
+  display: inline-block;
   text-decoration: none;
+  padding: 12px;
+  font-weight: 700;
+  color: #308af1;
 }
-.active {
-  text-decoration: underline;
-  font-weight: 600;
-}
-.link:hover {
-  text-decoration: underline;
-  font-weight: 600;
+
+.link.active {
+  color: #ae4ae8;
 }

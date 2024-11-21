@@ -1,59 +1,31 @@
-import css from './Contact.module.css';
-import { ImUser } from 'react-icons/im';
-import { BsFillTelephoneFill } from 'react-icons/bs';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import EditIcon from '@mui/icons-material/Edit';
-import { useDispatch, useSelector } from 'react-redux';
-import PatchForm from '../PatchForm/PatchForm';
-import DeleteModal from '../DeleteModal/DeleteModal';
+import { useDispatch } from "react-redux";
+import { deleteContact } from "../../redux/contacts/operations";
+// import { updat } from "../../redux/contactsOps";
 
-import { openEditor, openModal } from '../../redux/contacts/slice';
-import {
-  selectEditorContactId,
-  selectIsOpen,
-  selectModalContactId,
-  selectOpenEditor,
-} from '../../redux/contacts/selectors';
+import css from "./Contact.module.css";
+import { HiUser, HiPhone } from "react-icons/hi2";
 
-export default function Contact({ id, name, number }) {
+export default function Contact({ item }) {
   const dispatch = useDispatch();
-  const isOpen = useSelector(selectIsOpen);
-  const isOpenEditor = useSelector(selectOpenEditor);
-  const modalContactId = useSelector(selectModalContactId);
-  const editorContactId = useSelector(selectEditorContactId);
-
-  const handleIsOpenModal = () => {
-    dispatch(openModal(id));
-  };
-
-  const handleIsOpenEditor = () => {
-    dispatch(openEditor(id));
-  };
 
   return (
-    <div className={css.wrapper}>
-      <div className={css.contactInfo}>
-        <div className={css.wrapperInfo}>
-          <ImUser />
-          <p className={css.nameInfo}>{name}</p>
+    <div className={css.contactCard}>
+      <div className={css.contacts}>
+        <div className={css.infoWrap}>
+          <HiUser size={"20px"} title="contact icon" />
+          <p>{item.name}</p>
         </div>
-        <div className={css.wrapperInfo}>
-          <BsFillTelephoneFill />
-          <p className={css.phoneInfo}>{number}</p>
+        <div className={css.infoWrap}>
+          <HiPhone size={"20px"} title="phone icon" />
+          <p>{item.number}</p>
         </div>
       </div>
-      <div>
-        <button className={css.btn} type="button" onClick={handleIsOpenEditor}>
-          <EditIcon />
-        </button>
-        <button className={css.btn} type="button" onClick={handleIsOpenModal}>
-          <DeleteForeverIcon />
-        </button>
-      </div>
-      {isOpenEditor && editorContactId === id ? (
-        <PatchForm id={id} name={name} number={number} />
-      ) : null}
-      {isOpen && modalContactId === id ? <DeleteModal id={id} /> : null}
+      <button
+        className={css.deleteButton}
+        onClick={() => dispatch(deleteContact(item.id))}
+      >
+        Delete
+      </button>
     </div>
   );
 }

@@ -1,20 +1,29 @@
-import React from 'react'
-import css from './ContactsPage.module.css'
-import ContactForm from '../../components/ContactForm/ContactForm'
-import ContactList from '../../components/ContactList/ContactList'
-import Header from '../../components/Header/Header'
-import SearchBox from '../../components/SearchBox/SearchBox'
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { selectLoading } from "../../redux/contacts/selectors";
+import { fetchContacts } from "../../redux/contacts/operations";
 
-const ContactsPage = () => {
+import ContactForm from "../../components/ContactForm/ContactForm";
+import SearchBox from "../../components/SearchBox/SearchBox";
+import ContactList from "../../components/ContactList/ContactList";
+
+import PageTitle from "../../components/PageTitle/PageTitle";
+
+export default function ContactsPage() {
+  const isLoading = useSelector(selectLoading);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
+
   return (
-    <div className={css.contactsPage}>
-        <Header/>
-        <ContactForm />
-        <SearchBox />
-        <ContactList />
-        
+    <div>
+      <PageTitle>Phonebook</PageTitle>
+      <ContactForm />
+      <SearchBox />
+      {isLoading ? <div>Loading data...</div> : <ContactList />}
     </div>
-  )
+  );
 }
-
-export default ContactsPage

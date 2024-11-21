@@ -1,114 +1,65 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {
-  fetchContacts,
-  addContact,
-  deleteContact,
-  editContact,
-} from "./operations";
+import { fetchContacts, addContact, deleteContact } from "./operations";
+import { logOut } from "./../auth/operations";
+
+const handleRejected = (state, action) => {
+  state.loading = false;
+  state.error = action.payload;
+};
 
 const contactsSlice = createSlice({
   name: "contacts",
+
   initialState: {
     items: [],
     loading: false,
     error: null,
-    isOpen: false,
-    isClose: true,
-    isAccept: false,
-    modalId: null,
-    isOpenEditor: false,
-    editorId: null,
   },
-  reducers: {
-    openModal: (state, action) => {
-      state.isAccept = false;
-      state.isOpen = true;
-      state.isClose = false;
-      state.modalId = action.payload;
-    },
-    closeModal: (state) => {
-      state.isOpen = false;
-      state.isClose = true;
-      state.modalId = null;
-    },
-    acceptAction: (state) => {
-      state.isAccept = true;
-      state.isOpen = false;
-      state.isClose = true;
-      state.modalId = null;
-    },
-    openEditor: (state, action) => {
-      state.isOpenEditor = true;
-      state.editorId = action.payload;
-    },
-    closeEditor: (state) => {
-      state.isOpenEditor = false;
-      state.editorId = null;
-    },
-  },
+
   extraReducers: (builder) => {
     builder
+      //fetchContacts
       .addCase(fetchContacts.pending, (state) => {
-        state.loading = true;
+        state.isLoading = true;
       })
       .addCase(fetchContacts.fulfilled, (state, action) => {
-        state.loading = false;
+        state.isLoading = false;
         state.error = null;
         state.items = action.payload;
       })
-      .addCase(fetchContacts.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      })
+      .addCase(fetchContacts.rejected, handleRejected)
+      //addContact
       .addCase(addContact.pending, (state) => {
-        state.loading = true;
+        state.isLoading = true;
       })
       .addCase(addContact.fulfilled, (state, action) => {
-        state.loading = false;
+        state.isLoading = false;
         state.error = null;
         state.items.push(action.payload);
       })
-      .addCase(addContact.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      })
+      .addCase(addContact.rejected, handleRejected)
+      //deleteContact
       .addCase(deleteContact.pending, (state) => {
-        state.loading = true;
+        state.isLoading = true;
       })
       .addCase(deleteContact.fulfilled, (state, action) => {
-        state.loading = false;
-        state.error = null;
-        state.items = state.items.filter(
-          (item) => item.id !== action.payload.id
-        );
-      })
-      .addCase(deleteContact.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      })
-      .addCase(editContact.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(editContact.fulfilled, (state, action) => {
-        state.loading = false;
+        state.isLoading = false;
         state.error = null;
         const index = state.items.findIndex(
-          (item) => item.id === action.payload.id
+          (contact) => contact.id === action.payload.id
         );
-        if (index !== -1) {
-          state.items[index] = action.payload;
-          state.isOpenEditor = false;
-          state.editorId = null;
-        }
+        state.items.splice(index, 1);
       })
-      .addCase(editContact.rejected, (state, action) => {
+      .addCase(deleteContact.rejected, handleRejected)
+
+      // logOut
+
+      .addCase(logOut.fulfilled, (state) => {
+        state.items = [];
         state.loading = false;
-        state.error = action.payload;
+        state.error = null;
       });
   },
 });
-
-export const { openModal, closeModal, acceptAction, openEditor, closeEditor } =
-  contactsSlice.actions;
 
 export default contactsSlice.reducer;

@@ -1,14 +1,11 @@
-import css from './LoginPage.module.css';
-import React from 'react';
-import LoginForm from '../../components/LoginForm/LoginForm';
+import LoginForm from "../../components/LoginForm/LoginForm";
+import PageTitle from "../../components/PageTitle/PageTitle";
 
-const LoginPage = () => {
+export default function LoginPage() {
   return (
-    <dialog open className={css.modal}>
-      <h2>Login</h2>
+    <div>
+      <PageTitle>Please log in</PageTitle>
       <LoginForm />
-    </dialog>
+    </div>
   );
-};
-
-export default LoginPage;
+}

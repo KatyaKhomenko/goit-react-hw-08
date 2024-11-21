@@ -1,17 +1,9 @@
-.logoutWrapper {
+.wrapper {
   display: flex;
-  column-gap: 20px;
   align-items: center;
+  gap: 12px;
 }
-.greet {
-  width: 100%;
-}
-.logoutBtn {
-  background-color: transparent;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-}
-.name {
-  font-weight: 600;
+
+.username {
+  font-weight: 700;
 }
